@@ -29,6 +29,13 @@ export class UserService{
     return this.http.get<any>(this.login_url);
   }
 
+  logout(): void {
+    this.user.id = "";
+    this.user.name = "";
+    this.user.createdAt = "";
+    this.loggedInEmitter.next(false);
+  }
+
   getUserById(userId: string): Observable<User> {
     return this.http.get<User>(this.get_user_url + userId);
   }

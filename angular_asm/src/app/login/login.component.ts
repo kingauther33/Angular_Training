@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
       'password': new FormControl("", Validators.required)
     })
 
+    if (this.userService.getUser())
     this.signupForm.statusChanges.subscribe((status) => console.log(status))
   }
 
