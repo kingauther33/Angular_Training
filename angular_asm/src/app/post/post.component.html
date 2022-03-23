@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="container">
+    <div class="row height d-flex justify-content-center align-items-center">
+      <div class="col-md-8">
+        <div class="search">
+          <i class="fa fa-search"></i>
+          <input type="text" class="form-control" name="search" [(ngModel)]="searchInput"
+                 placeholder="Find by title or body"/>
+          <button class="btn btn-primary" (click)="onSearch()">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+  <ngx-datatable
+    class="material"
+    [rows]="postLists"
+    [columnMode]="ColumnMode.flex"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [sorts]="[{prop: 'userId', dir: 'asc'}]"
+  >
+    <ngx-datatable-column name="User ID" [flexGrow]="0.2" [minWidth]="100" [maxWidth]="800">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row.userId }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Id" [flexGrow]="0.2" [minWidth]="100" [maxWidth]="800">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row.id }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Title" [flexGrow]="0.5" [minWidth]="100" [maxWidth]="800" [sortable]="false">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row.title }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Body" [flexGrow]="1" [minWidth]="100" [maxWidth]="800" [sortable]="false">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row.body }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Action" [flexGrow]="0.4" [minWidth]="100"
+                          [maxWidth]="800" [sortable]="false">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-primary me-2" (click)="removePost(row)">Remove</button>
+          <a class="link-info" [routerLink]="['/posts', row.id]">Detail</a>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <!--  <table class="table">-->
+  <!--    <thead>-->
+  <!--    <tr>-->
+  <!--      <th scope="col" class="text-nowrap">User ID</th>-->
+  <!--      <th scope="col">ID</th>-->
+  <!--      <th scope="col">Title</th>-->
+  <!--      <th scope="col">Body</th>-->
+  <!--    </tr>-->
+  <!--    </thead>-->
+  <!--    <tbody>-->
+  <!--    <tr *ngFor="let post of postLists; let i = index">-->
+  <!--      <th scope="row" class="text-center">{{post.userId}}</th>-->
+  <!--      <td>{{post.id}}</td>-->
+  <!--      <td>{{post.title}}</td>-->
+  <!--      <td>@{{post.body}}</td>-->
+  <!--    </tr>-->
+  <!--    </tbody>-->
+  <!--  </table>-->
+</div>

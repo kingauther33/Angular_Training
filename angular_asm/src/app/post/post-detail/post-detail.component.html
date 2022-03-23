@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="template-details">
+    <a class="link-info text-decoration-none" routerLink="/posts">&larr; Back to posts</a>
+    <h2 class="mt-2">Post Detail</h2>
+    <ul *ngIf="post;else fallback_content">
+      <li><strong>User ID</strong><span>{{post.userId}}</span></li>
+      <li><strong>ID</strong><span>{{post.id}}</span></li>
+      <li><strong>Title</strong><span>{{post.title}}</span></li>
+      <li><strong>Body</strong><span>{{post.body}}</span></li>
+    </ul>
+    <ng-template #fallback_content>
+      No post found...
+    </ng-template>
+  </div>
+</div>
